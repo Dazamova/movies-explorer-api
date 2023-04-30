@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const urlRegExp = /https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]+\.[^\s]{2,}|www\.[a-zA-Z0-9]+\.[^\s]{2,}/;
+const urlRegex = require('../utils/constants');
 
 const movieSchema = new mongoose.Schema({
   country: { // страна создания фильма
@@ -28,7 +28,7 @@ const movieSchema = new mongoose.Schema({
     required: true,
     validate: {
       validator(v) {
-        return urlRegExp.test(v);
+        return urlRegex.test(v);
       },
       message: 'Некорректная ссылка',
     },
@@ -38,7 +38,7 @@ const movieSchema = new mongoose.Schema({
     required: true,
     validate: {
       validator(v) {
-        return urlRegExp.test(v);
+        return urlRegex.test(v);
       },
       message: 'Некорректная ссылка',
     },
@@ -48,7 +48,7 @@ const movieSchema = new mongoose.Schema({
     required: true,
     validate: {
       validator(v) {
-        return urlRegExp.test(v);
+        return urlRegex.test(v);
       },
       message: 'Некорректная ссылка',
     },

@@ -5,7 +5,7 @@ const {
   getMovies, createMovie, deleteMovie,
 } = require('../controllers/movies');
 
-const urlRegExp = /https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]+\.[^\s]{2,}|www\.[a-zA-Z0-9]+\.[^\s]{2,}/;
+const { urlRegex } = require('../utils/constants');
 
 router.get('/', getMovies); // GET /movies - возвращает все сохранённые текущим пользователем фильмы
 
@@ -16,11 +16,11 @@ router.post('/', celebrate({ // POST /movies - создаёт фильм с пе
     duration: Joi.number().required(),
     year: Joi.string().required(),
     description: Joi.string().required(),
-    image: Joi.string().required().pattern(urlRegExp),
-    trailerLink: Joi.string().required().pattern(urlRegExp),
+    image: Joi.string().required().pattern(urlRegex),
+    trailerLink: Joi.string().required().pattern(urlRegex),
     nameRU: Joi.string().required(),
     nameEN: Joi.string().required(),
-    thumbnail: Joi.string().required().pattern(urlRegExp),
+    thumbnail: Joi.string().required().pattern(urlRegex),
     movieId: Joi.string().required().hex().length(24),
   }),
 }), createMovie);

@@ -7,8 +7,7 @@ const { NODE_ENV, JWT_SECRET } = process.env;
 const NotFoundError = require('../errors/not-found-err'); // 404
 const BadRequestError = require('../errors/bad-request-err'); // 400
 const ConflictError = require('../errors/conflict-err'); // 409
-
-const HTTP_STATUS_OK = 200;
+const HTTP_STATUS_OK = require('../utils/constants'); // 200
 
 module.exports.createUser = (req, res, next) => { // POST /users — создаёт пользователя
   const {

@@ -4,8 +4,7 @@ const NotFoundError = require('../errors/not-found-err'); // 404
 const BadRequestError = require('../errors/bad-request-err'); // 400
 const ForbiddenError = require('../errors/forbidden-err'); // 403
 
-const HTTP_STATUS_OK = 200;
-const HTTP_STATUS_CREATED = 201;
+const { HTTP_STATUS_OK, HTTP_STATUS_CREATED } = require('../utils/constants'); // 200 и 201
 
 // module.exports.getMovies = (req, res, next) => { // все фильмы в базе
 //   Movie.find({})
