@@ -10,6 +10,6 @@ const NotFoundError = require('../errors/not-found-err');
 router.use('/', authRouter);
 router.use('/users', auth, userRouter);
 router.use('/movies', auth, movieRouter);
-router.all('*', (req, res, next) => next(new NotFoundError('Запрашиваемая страница не найдена')));
+router.all('*', auth, (req, res, next) => next(new NotFoundError('Запрашиваемая страница не найдена')));
 
 module.exports = router;

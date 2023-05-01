@@ -21,13 +21,13 @@ router.post('/', celebrate({ // POST /movies - создаёт фильм с пе
     nameRU: Joi.string().required(),
     nameEN: Joi.string().required(),
     thumbnail: Joi.string().required().pattern(urlRegex),
-    movieId: Joi.string().required().hex().length(24),
+    movieId: Joi.number().required(),
   }),
 }), createMovie);
 
 router.delete('/:movieId', celebrate({ // DELETE /movies/_id - удаляет сохранённый фильм по id
   params: Joi.object().keys({
-    movieId: Joi.string().required().hex().length(24),
+    movieId: Joi.number().required(),
   }),
 }), deleteMovie); // DELETE /cards/:cardId — удаляет карточку по идентификатору
 

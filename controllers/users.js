@@ -101,6 +101,8 @@ module.exports.updateProfile = (req, res, next) => { // PATCH /users/me — об
     .catch((err) => {
       if (err.name === 'DocumentNotFoundError') {
         next(new NotFoundError('Пользователь по указанному _id не найден'));
+      } else if (err.code === 11000) {
+        next(new ConflictError('Данный email уже зарегистрирован'));
       } else if (err.name === 'ValidationError') {
         next(new BadRequestError('Переданы некорректные данные при обновлении профиля'));
       } else {
