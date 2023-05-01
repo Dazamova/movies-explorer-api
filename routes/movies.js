@@ -10,7 +10,7 @@ const { urlRegex } = require('../utils/constants');
 router.get('/', getMovies); // GET /movies - возвращает все сохранённые текущим пользователем фильмы
 
 router.post('/', celebrate({ // POST /movies - создаёт фильм с переданными в теле параметрами
-  body: Joi.object().keys({ // #
+  body: Joi.object().keys({
     country: Joi.string().required(),
     director: Joi.string().required(),
     duration: Joi.number().required(),
@@ -29,6 +29,6 @@ router.delete('/:movieId', celebrate({ // DELETE /movies/_id - удаляет с
   params: Joi.object().keys({
     movieId: Joi.number().required(),
   }),
-}), deleteMovie); // DELETE /cards/:cardId — удаляет карточку по идентификатору
+}), deleteMovie);
 
 module.exports = router;

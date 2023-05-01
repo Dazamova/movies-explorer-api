@@ -12,15 +12,13 @@ const router = require('./routes/index');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 const errorHandler = require('./middlewares/error-handler');
 
-const { PORT = 3000, BASE_PATH = 'mongodb://127.0.0.1:27017/bitfilmsdb' } = process.env;
-const app = express();
-
 const limiter = rateLimit({
   windowMs: 15 * 60 * 1000, // за 15 минут
   max: 100, // можно совершить максимум 100 запросов с одного IP
 });
 
-app.use(limiter); // подключаем rate-limiter
+const { PORT = 3000, BASE_PATH = 'mongodb://127.0.0.1:27017/bitfilmsdb' } = process.env;
+const app = express();
 
 app.use(helmet()); // подключаем rate-limiter
 
@@ -42,6 +40,7 @@ app.use(bodyParser.json()); // для работы с телом запроса
 app.use(cookieParser());
 
 app.use(requestLogger); // логгер запросов
+app.use(limiter); // подключаем rate-limiter
 
 app.get('/crash-test', () => {
   setTimeout(() => {
